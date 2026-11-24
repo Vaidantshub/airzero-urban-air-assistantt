@@ -195,20 +195,20 @@ export default function App() {
 
       {/* Hackathon Glassy Footer */}
       <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 mt-8 w-full relative z-10">
-        <div className="glass-panel rounded-full px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-300">
+        <div className="glass-panel rounded-full px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white">
           
           <div className="flex items-center gap-2">
             <span className="font-extrabold text-white">AIRZERO</span>
             <span>•</span>
-            <span>First-Principles Exposure Engineering • Spatial Glass Architecture</span>
+            <span className="text-white/80">First-Principles Exposure Engineering • Spatial Glass Architecture</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4 text-white/90">
             <a 
               href="https://air-quality-api.open-meteo.com" 
               target="_blank" 
               rel="noreferrer" 
-              className="hover:text-emerald-400 transition-colors flex items-center gap-1"
+              className="hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold"
             >
               Open-Meteo API <ExternalLink className="w-3 h-3" />
             </a>
@@ -216,7 +216,7 @@ export default function App() {
               href="https://reactbits.dev" 
               target="_blank" 
               rel="noreferrer" 
-              className="hover:text-emerald-400 transition-colors flex items-center gap-1"
+              className="hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold"
             >
               reactbits.dev <ExternalLink className="w-3 h-3" />
             </a>
@@ -224,14 +224,14 @@ export default function App() {
               href="https://github.com/topics/free-for-developers" 
               target="_blank" 
               rel="noreferrer" 
-              className="hover:text-emerald-400 transition-colors flex items-center gap-1"
+              className="hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold"
             >
               free-for-developers <ExternalLink className="w-3 h-3" />
             </a>
           </div>
 
           <div className="text-center md:text-right">
-            <span className="text-slate-300 font-semibold">Hack2Skill Prompt War Leaderboard</span>
+            <span className="text-white font-bold">Hack2Skill Prompt War Leaderboard</span>
           </div>
 
         </div>

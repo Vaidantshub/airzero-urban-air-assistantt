@@ -9,7 +9,6 @@ const DEFAULT_DAY =
 const DEFAULT_NIGHT =
   "https://cdn.21st.dev/assets/mirror/4b/4badf32b0bc920a2fd1b066182eee89e98d8615f680e01fb19ff62fb56e86872.mp4"
 
-// Web Audio Ambient Engine from Elsewhere Hero
 function createAmbientEngine(ctx: AudioContext) {
   const master = ctx.createGain()
   master.gain.value = 0
@@ -276,7 +275,7 @@ export default function AmbientElsewhereBackground() {
 
   return (
     <>
-      {/* Background Living Footage Layer */}
+      {/* Living Atmospheric Video Layer */}
       <div className="fixed inset-0 -z-30 overflow-hidden pointer-events-none">
         {/* Day Footage */}
         <video
@@ -288,7 +287,7 @@ export default function AmbientElsewhereBackground() {
           playsInline
           preload="auto"
           aria-hidden="true"
-          style={{ ...videoStyle, opacity: isNight ? 0 : 0.65 }}
+          style={{ ...videoStyle, opacity: isNight ? 0 : 0.85 }}
         />
 
         {/* Night Footage */}
@@ -301,45 +300,45 @@ export default function AmbientElsewhereBackground() {
           playsInline
           preload="auto"
           aria-hidden="true"
-          style={{ ...videoStyle, opacity: isNight ? 0.75 : 0 }}
+          style={{ ...videoStyle, opacity: isNight ? 0.9 : 0 }}
         />
 
-        {/* Deep Atmospheric Glassmorphism Vignette */}
+        {/* Crystal Ambient Vignette - clear & luminous */}
         <div 
-          className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950/90 pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-b from-slate-950/25 via-transparent to-slate-950/45 pointer-events-none"
         />
       </div>
 
-      {/* Floating Ambient Controls Widget at Bottom Left */}
+      {/* Floating Crystal Glass Ambient Controls Widget */}
       <aside 
         aria-label="Ambient Soundscape and Atmosphere Controls"
-        className="fixed bottom-4 left-4 z-40 flex items-center gap-2 pointer-events-auto bg-slate-900/80 backdrop-blur-md border border-slate-800/80 p-1.5 rounded-full shadow-2xl transition-all hover:border-slate-700"
+        className="fixed bottom-5 left-5 z-40 flex items-center gap-2 pointer-events-auto glass-pill px-3 py-2 rounded-full shadow-2xl transition-all hover:scale-[1.03]"
       >
         {/* Day / Night Toggle */}
         <button
           onClick={toggleNight}
           title={isNight ? "Switch to Day soundscape & video" : "Switch to Night soundscape & video"}
-          className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors flex items-center justify-center cursor-pointer"
+          className="p-1.5 rounded-full hover:bg-white/20 text-white transition-all flex items-center justify-center cursor-pointer"
         >
-          {isNight ? <Moon className="w-4 h-4 text-cyan-400" /> : <Sun className="w-4 h-4 text-amber-400" />}
+          {isNight ? <Moon className="w-4 h-4 text-cyan-300" /> : <Sun className="w-4 h-4 text-amber-300" />}
         </button>
 
         {/* Ambient Web Audio Synthesizer */}
         <button
           onClick={toggleMuted}
           title={muted ? "Play ambient generative audio (keys & cicadas)" : "Mute ambient audio"}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+          className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
             muted
-              ? "bg-slate-800 text-slate-400 hover:text-slate-200"
-              : "bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20"
+              ? "bg-white/10 text-white hover:bg-white/20"
+              : "bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/40"
           }`}
         >
           {muted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 animate-pulse" />}
-          <span>{muted ? "Ambient Sound: Off" : "Ambient Sound: On"}</span>
+          <span>{muted ? "Soundscape Off" : "Soundscape On"}</span>
         </button>
 
-        <span className="text-[10px] text-slate-500 font-mono pr-2 hidden sm:inline">
-          Elsewhere Engine
+        <span className="text-[11px] text-white/80 font-semibold pr-1 hidden sm:inline">
+          Elsewhere Sound
         </span>
       </aside>
     </>

@@ -178,22 +178,22 @@ Format as clean, executive markdown with clear actionable headings and zero gene
       {/* Hackathon Prompt War Header */}
       <div className="p-6 rounded-3xl glass-panel flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider">
-            <Award className="w-4 h-4" /> Hack2Skill Prompt War Mission
+          <div className="flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wider">
+            <Award className="w-4 h-4 text-purple-300" /> Hack2Skill Prompt War Mission
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white mt-1">
             AI Smog Assistant & Prompt Engineering Studio
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
+          <p className="text-xs sm:text-sm text-slate-100 mt-1 max-w-2xl leading-relaxed">
             Designed for the Hackathon's <strong>Prompt War</strong> problem statement: Helping families beat winter smog with low-emission routines and indoor air hacks. Use these benchmark-tested prompt blueprints or generate custom prompts for your submission.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 px-3.5 py-2 rounded-xl">
-          <Terminal className="w-5 h-5 text-purple-400" />
+        <div className="flex items-center gap-2 glass-subcard px-3.5 py-2 rounded-xl">
+          <Terminal className="w-5 h-5 text-purple-300" />
           <div className="text-right">
-            <span className="text-[10px] text-slate-400 block font-semibold">Prompt Quality</span>
-            <span className="text-sm font-bold text-purple-300">Leaderboard Ready</span>
+            <span className="text-[10px] text-white/80 block font-semibold">Prompt Quality</span>
+            <span className="text-sm font-black text-white">Leaderboard Ready</span>
           </div>
         </div>
       </div>
@@ -201,10 +201,10 @@ Format as clean, executive markdown with clear actionable headings and zero gene
       {/* Preset Master Prompt Blueprints */}
       <div className="p-6 rounded-3xl glass-panel">
         <h3 className="text-base font-bold text-white flex items-center gap-2 mb-2">
-          <BookOpen className="w-4 h-4 text-purple-400" />
+          <BookOpen className="w-4 h-4 text-purple-300" />
           Curated Battle-Tested Prompt Blueprints
         </h3>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-slate-100 mb-4">
           Click any blueprint below to inspect the engineered system prompt with role definition, constraints, and chain-of-thought instructions.
         </p>
 
@@ -216,23 +216,23 @@ Format as clean, executive markdown with clear actionable headings and zero gene
               <button
                 key={item.id}
                 onClick={() => setSelectedPrompt(item)}
-                className={`p-3.5 rounded-xl border text-left transition-all flex flex-col justify-between ${
+                className={`p-3.5 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${
                   isSelected
-                    ? 'bg-purple-500/15 border-purple-500/60 shadow-lg shadow-purple-500/10'
-                    : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                    ? 'glass-pill-active text-white'
+                    : 'glass-subcard text-white/80 hover:text-white hover:border-white/40'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-bold uppercase tracking-wider glass-pill px-2 py-0.5 rounded text-white">
                       {item.category}
                     </span>
-                    <Icon className="w-4 h-4 text-slate-300" />
+                    <Icon className="w-4 h-4 text-white" />
                   </div>
                   <h4 className="text-xs font-bold text-white line-clamp-1">{item.title}</h4>
-                  <p className="text-[11px] text-slate-400 mt-1 line-clamp-2">{item.summary}</p>
+                  <p className="text-[11px] text-slate-100 mt-1 line-clamp-2 leading-relaxed">{item.summary}</p>
                 </div>
-                <span className="text-[10px] text-purple-300 font-semibold mt-3 block">
+                <span className="text-[10px] text-white font-bold mt-3 block">
                   {isSelected ? '● Active Blueprint' : 'Click to inspect'}
                 </span>
               </button>
@@ -241,21 +241,21 @@ Format as clean, executive markdown with clear actionable headings and zero gene
         </div>
 
         {/* Selected Prompt Display & Copy */}
-        <div className="mt-4 p-4 rounded-xl bg-slate-950 border border-slate-800 relative">
+        <div className="mt-4 p-4 rounded-2xl glass-subcard relative">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
-              <Terminal className="w-3.5 h-3.5 text-purple-400" />
+            <span className="text-xs font-bold text-white flex items-center gap-1.5">
+              <Terminal className="w-3.5 h-3.5 text-purple-300" />
               Engineered Prompt Code: {selectedPrompt.title}
             </span>
             <button
               onClick={() => handleCopy(selectedPrompt.prompt, setCopied)}
-              className="text-xs font-semibold px-2.5 py-1 rounded bg-purple-600 hover:bg-purple-500 text-white flex items-center gap-1.5 transition-all shadow-sm"
+              className="text-xs font-bold px-3 py-1.5 rounded-xl glass-pill text-white flex items-center gap-1.5 transition-all cursor-pointer"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-300" /> : <Copy className="w-3.5 h-3.5" />}
               {copied ? 'Copied to Clipboard!' : 'Copy Prompt'}
             </button>
           </div>
-          <pre className="text-xs text-slate-300 font-mono whitespace-pre-wrap leading-relaxed max-h-60 overflow-y-auto no-scrollbar p-2 bg-slate-900/60 rounded border border-slate-800/80">
+          <pre className="text-xs text-white font-mono whitespace-pre-wrap leading-relaxed max-h-60 overflow-y-auto no-scrollbar p-3 glass-input rounded-xl">
             {selectedPrompt.prompt}
           </pre>
         </div>
@@ -264,61 +264,61 @@ Format as clean, executive markdown with clear actionable headings and zero gene
       {/* Dynamic Custom Prompt Generator */}
       <div className="p-6 rounded-3xl glass-panel">
         <h3 className="text-base font-bold text-white flex items-center gap-2 mb-2">
-          <Sparkles className="w-4 h-4 text-emerald-400" />
+          <Sparkles className="w-4 h-4 text-emerald-300" />
           Dynamic Family Prompt Compiler
         </h3>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-slate-100 mb-4">
           Customize family variables and generate a tailored prompt to paste into Claude, GPT, or Gemini for instant high-score evaluations.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
-            <label className="text-xs font-semibold text-slate-300 block mb-1.5">Target AI Persona / Role</label>
+            <label className="text-xs font-bold text-white block mb-1.5">Target AI Persona / Role</label>
             <select
               value={customRole}
               onChange={(e) => setCustomRole(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 text-xs rounded-lg p-2 text-slate-200 focus:ring-1 focus:ring-emerald-500 outline-none"
+              className="w-full glass-input text-xs rounded-xl p-2.5 text-white outline-none cursor-pointer"
             >
-              <option value="Pediatric Pulmonologist">Pediatric Pulmonologist</option>
-              <option value="Aerosol Environmental Scientist">Aerosol Environmental Scientist</option>
-              <option value="Community Low-Emission Urban Planner">Community Low-Emission Urban Planner</option>
-              <option value="Zero-Budget Bio-Defense Engineer">Zero-Budget Bio-Defense Engineer</option>
+              <option value="Pediatric Pulmonologist" className="bg-slate-900 text-white">Pediatric Pulmonologist</option>
+              <option value="Aerosol Environmental Scientist" className="bg-slate-900 text-white">Aerosol Environmental Scientist</option>
+              <option value="Community Low-Emission Urban Planner" className="bg-slate-900 text-white">Community Low-Emission Urban Planner</option>
+              <option value="Zero-Budget Bio-Defense Engineer" className="bg-slate-900 text-white">Zero-Budget Bio-Defense Engineer</option>
             </select>
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-300 block mb-1.5">Household Demographics</label>
+            <label className="text-xs font-bold text-white block mb-1.5">Household Demographics</label>
             <input
               type="text"
               value={familyMembers}
               onChange={(e) => setFamilyMembers(e.target.value)}
               placeholder="e.g. Newborn + 70yo asthmatic"
-              className="w-full bg-slate-950 border border-slate-800 text-xs rounded-lg p-2 text-slate-200 focus:ring-1 focus:ring-emerald-500 outline-none"
+              className="w-full glass-input text-xs rounded-xl p-2.5 text-white outline-none placeholder:text-white/50"
             />
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-300 block mb-1.5">Residence & Building Type</label>
+            <label className="text-xs font-bold text-white block mb-1.5">Residence & Building Type</label>
             <input
               type="text"
               value={homeType}
               onChange={(e) => setHomeType(e.target.value)}
               placeholder="e.g. 2BHK rental apartment"
-              className="w-full bg-slate-950 border border-slate-800 text-xs rounded-lg p-2 text-slate-200 focus:ring-1 focus:ring-emerald-500 outline-none"
+              className="w-full glass-input text-xs rounded-xl p-2.5 text-white outline-none placeholder:text-white/50"
             />
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-300 block mb-1.5">Budget & Equipment Constraint</label>
+            <label className="text-xs font-bold text-white block mb-1.5">Budget & Equipment Constraint</label>
             <select
               value={budgetTier}
               onChange={(e) => setBudgetTier(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 text-xs rounded-lg p-2 text-slate-200 focus:ring-1 focus:ring-emerald-500 outline-none"
+              className="w-full glass-input text-xs rounded-xl p-2.5 text-white outline-none cursor-pointer"
             >
-              <option value="Strict zero budget ($0 using household items)">Zero Budget ($0 items only)</option>
-              <option value="Strict budget (< $50 for DIY box fan purifier)">Budget &lt; $50 (DIY box fan)</option>
-              <option value="Moderate budget ($100 - $200 for HEPA filters)">Moderate ($100 - $200)</option>
-              <option value="Unconstrained commercial clean air infrastructure">Full Commercial Setup</option>
+              <option value="Strict zero budget ($0 using household items)" className="bg-slate-900 text-white">Zero Budget ($0 items only)</option>
+              <option value="Strict budget (< $50 for DIY box fan purifier)" className="bg-slate-900 text-white">Budget &lt; $50 (DIY box fan)</option>
+              <option value="Moderate budget ($100 - $200 for HEPA filters)" className="bg-slate-900 text-white">Moderate ($100 - $200)</option>
+              <option value="Unconstrained commercial clean air infrastructure" className="bg-slate-900 text-white">Full Commercial Setup</option>
             </select>
           </div>
         </div>
@@ -326,7 +326,7 @@ Format as clean, executive markdown with clear actionable headings and zero gene
         <div className="mt-4 flex items-center justify-between">
           <button
             onClick={handleGenerateCustomPrompt}
-            className="text-xs font-bold px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center gap-2 transition-all shadow-md shadow-emerald-500/20"
+            className="text-xs font-black px-4 py-2.5 rounded-full glass-pill text-white flex items-center gap-2 transition-all cursor-pointer hover:scale-[1.02]"
           >
             <Cpu className="w-3.5 h-3.5" />
             Compile Custom Hackathon Prompt
@@ -335,17 +335,17 @@ Format as clean, executive markdown with clear actionable headings and zero gene
           {generatedPrompt && (
             <button
               onClick={() => handleCopy(generatedPrompt, setCopiedCustom)}
-              className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-all"
+              className="text-xs font-bold px-3 py-1.5 rounded-xl glass-pill text-white flex items-center gap-1.5 transition-all cursor-pointer"
             >
-              {copiedCustom ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              {copiedCustom ? <Check className="w-3.5 h-3.5 text-emerald-300" /> : <Copy className="w-3.5 h-3.5" />}
               {copiedCustom ? 'Prompt Copied!' : 'Copy Compiled Prompt'}
             </button>
           )}
         </div>
 
         {generatedPrompt && (
-          <div className="mt-4 p-4 rounded-xl bg-slate-950 border border-slate-800">
-            <pre className="text-xs text-slate-300 font-mono whitespace-pre-wrap leading-relaxed max-h-52 overflow-y-auto no-scrollbar">
+          <div className="mt-4 p-4 rounded-2xl glass-subcard">
+            <pre className="text-xs text-white font-mono whitespace-pre-wrap leading-relaxed max-h-52 overflow-y-auto no-scrollbar">
               {generatedPrompt}
             </pre>
           </div>
@@ -355,25 +355,25 @@ Format as clean, executive markdown with clear actionable headings and zero gene
       {/* Interactive AI Smog Knowledge Assistant */}
       <div className="p-6 rounded-3xl glass-panel">
         <h3 className="text-base font-bold text-white flex items-center gap-2 mb-1">
-          <HelpCircle className="w-4 h-4 text-cyan-400" />
+          <HelpCircle className="w-4 h-4 text-cyan-300" />
           Interactive Smog Defense AI Simulator
         </h3>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-slate-100 mb-4">
           Test real family queries against the embedded air quality & low-emission knowledge base.
         </p>
 
         {/* Chat Stream */}
-        <div className="space-y-3 max-h-64 overflow-y-auto p-4 rounded-xl bg-slate-950 border border-slate-800 mb-3">
+        <div className="space-y-3 max-h-64 overflow-y-auto p-4 rounded-2xl glass-subcard mb-3">
           {chatMessages.map((msg, i) => (
             <div
               key={i}
               className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
             >
               <div
-                className={`max-w-[85%] p-3 rounded-xl text-xs leading-relaxed ${
+                className={`max-w-[85%] p-3.5 rounded-2xl text-xs leading-relaxed ${
                   msg.sender === 'user'
-                    ? 'bg-emerald-500 text-slate-950 font-medium rounded-br-none'
-                    : 'bg-slate-900 text-slate-200 border border-slate-800 rounded-bl-none'
+                    ? 'glass-pill-active text-white font-semibold rounded-br-none'
+                    : 'glass-subcard text-white rounded-bl-none'
                 }`}
               >
                 {msg.text}
@@ -389,19 +389,19 @@ Format as clean, executive markdown with clear actionable headings and zero gene
             value={chatInput}
             onChange={(e) => setChatInput(e.target.value)}
             placeholder="Ask about exercise during smog, mask fit, DIY filters, or cooking..."
-            className="flex-1 bg-slate-950 border border-slate-800 text-xs rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all placeholder:text-slate-500"
+            className="flex-1 glass-input text-xs rounded-full px-4 py-2.5 text-white placeholder:text-white/50"
           />
           <button
             type="submit"
-            className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-emerald-500/20"
+            className="px-5 py-2.5 rounded-full glass-pill text-white font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer hover:scale-[1.02]"
           >
             <Send className="w-3.5 h-3.5" />
             Ask AI
           </button>
         </form>
 
-        <div className="mt-2.5 flex flex-wrap gap-1.5">
-          <span className="text-[10px] text-slate-500">Quick suggestions:</span>
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          <span className="text-[10px] text-white/70 font-semibold">Quick suggestions:</span>
           {[
             'Can I exercise outdoors today?',
             'Do cloth masks filter PM2.5?',
@@ -414,7 +414,7 @@ Format as clean, executive markdown with clear actionable headings and zero gene
               onClick={() => {
                 setChatInput(q);
               }}
-              className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+              className="text-[10px] px-2.5 py-0.5 rounded-full glass-pill text-white hover:text-white transition-all cursor-pointer"
             >
               {q}
             </button>

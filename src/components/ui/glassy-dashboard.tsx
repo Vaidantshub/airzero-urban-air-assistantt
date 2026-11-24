@@ -30,74 +30,74 @@ const studioPhoto = "https://cdn.21st.dev/assets/mirror/ea/ea9270b3b7246283219ac
 
 const dashboardStyles = `
 .gd-app {
-  --gd-ink: #25201e;
-  --gd-muted: #423731;
-  --gd-line: rgb(74 49 33 / 15%);
-  --gd-grid: rgb(74 49 33 / 19%);
-  --gd-rim: rgb(255 253 246 / 51%);
-  --gd-edge-light: rgb(255 254 247 / 84%);
-  --gd-edge-shade: rgb(57 40 28 / 19%);
-  --gd-gloss: rgb(255 251 242 / 45%);
-  --gd-frame: rgb(247 234 219 / 23%);
-  --gd-rail: rgb(241 222 206 / 48%);
-  --gd-card: rgb(250 242 232 / 46%);
-  --gd-card-light: rgb(255 251 245 / 34%);
-  --gd-raised: rgb(255 249 243 / 81%);
-  --gd-inner: rgb(255 250 245 / 37%);
-  --gd-surface: #f6ece2;
-  --gd-track: rgb(81 49 32 / 14%);
-  --gd-primary: #261e1b;
-  --gd-primary-ink: #fffaf5;
-  --gd-pick: #fff9f3;
-  --gd-pick-ink: #241b17;
-  --gd-coral: #a43c27;
-  --gd-teal: #09644f;
-  --gd-ochre: #996300;
-  --gd-graph-ink: #40332d;
-  --gd-focus: #194b48;
-  --gd-dark-shadow: 35 21 14;
+  --gd-ink: #ffffff;
+  --gd-muted: #e2e8f0;
+  --gd-line: rgba(255, 255, 255, 0.22);
+  --gd-grid: rgba(255, 255, 255, 0.12);
+  --gd-rim: rgba(255, 255, 255, 0.38);
+  --gd-edge-light: rgba(255, 255, 255, 0.7);
+  --gd-edge-shade: rgba(0, 0, 0, 0.2);
+  --gd-gloss: rgba(255, 255, 255, 0.18);
+  --gd-frame: rgba(255, 255, 255, 0.08);
+  --gd-rail: rgba(255, 255, 255, 0.12);
+  --gd-card: rgba(255, 255, 255, 0.08);
+  --gd-card-light: rgba(255, 255, 255, 0.14);
+  --gd-raised: rgba(255, 255, 255, 0.18);
+  --gd-inner: rgba(255, 255, 255, 0.10);
+  --gd-surface: rgba(255, 255, 255, 0.12);
+  --gd-track: rgba(255, 255, 255, 0.16);
+  --gd-primary: #ffffff;
+  --gd-primary-ink: #0a0f1d;
+  --gd-pick: #ffffff;
+  --gd-pick-ink: #0a0f1d;
+  --gd-coral: #f87171;
+  --gd-teal: #34d399;
+  --gd-ochre: #fbbf24;
+  --gd-graph-ink: #ffffff;
+  --gd-focus: #38bdf8;
+  --gd-dark-shadow: 0 0 0;
   inline-size: 100%;
   min-inline-size: 0;
   flex: 1 1 100%;
   position: relative;
   isolation: isolate;
   min-block-size: 100svh;
-  background: #ab8e76;
-  color: var(--gd-ink);
-  color-scheme: light;
+  background: transparent;
+  color: #ffffff;
+  color-scheme: dark;
   font-family: "Manrope Variable", Manrope, system-ui, sans-serif;
   font-size: 13px;
   font-weight: 550;
   font-variant-numeric: tabular-nums;
 }
 .gd-app[data-theme="dark"] {
-  --gd-ink: #fff6e9;
-  --gd-muted: #e5d5c7;
-  --gd-line: rgb(243 221 198 / 19%);
-  --gd-grid: rgb(243 221 198 / 19%);
-  --gd-rim: rgb(255 236 212 / 31%);
-  --gd-edge-light: rgb(255 242 225 / 49%);
-  --gd-edge-shade: rgb(11 6 5 / 30%);
-  --gd-gloss: rgb(255 237 213 / 13%);
-  --gd-frame: rgb(42 31 29 / 52%);
-  --gd-rail: rgb(45 32 30 / 59%);
-  --gd-card: rgb(47 36 34 / 53%);
-  --gd-card-light: rgb(106 88 81 / 30%);
-  --gd-raised: rgb(80 67 61 / 82%);
-  --gd-inner: rgb(78 61 56 / 49%);
-  --gd-surface: #3b302c;
-  --gd-track: rgb(245 226 212 / 16%);
-  --gd-primary: #f3ddca;
-  --gd-primary-ink: #231a16;
-  --gd-pick: #f9eee0;
-  --gd-pick-ink: #241b17;
-  --gd-coral: #ff9177;
-  --gd-teal: #75dac0;
-  --gd-ochre: #f1be58;
-  --gd-graph-ink: #e7d9cd;
-  --gd-focus: #f9bf9b;
-  --gd-dark-shadow: 10 4 3;
-  background: #40322b;
+  --gd-ink: #ffffff;
+  --gd-muted: #e2e8f0;
+  --gd-line: rgba(255, 255, 255, 0.22);
+  --gd-grid: rgba(255, 255, 255, 0.12);
+  --gd-rim: rgba(255, 255, 255, 0.38);
+  --gd-edge-light: rgba(255, 255, 255, 0.7);
+  --gd-edge-shade: rgba(0, 0, 0, 0.2);
+  --gd-gloss: rgba(255, 255, 255, 0.18);
+  --gd-frame: rgba(255, 255, 255, 0.08);
+  --gd-rail: rgba(255, 255, 255, 0.12);
+  --gd-card: rgba(255, 255, 255, 0.08);
+  --gd-card-light: rgba(255, 255, 255, 0.14);
+  --gd-raised: rgba(255, 255, 255, 0.18);
+  --gd-inner: rgba(255, 255, 255, 0.10);
+  --gd-surface: rgba(255, 255, 255, 0.12);
+  --gd-track: rgba(255, 255, 255, 0.16);
+  --gd-primary: #ffffff;
+  --gd-primary-ink: #0a0f1d;
+  --gd-pick: #ffffff;
+  --gd-pick-ink: #0a0f1d;
+  --gd-coral: #f87171;
+  --gd-teal: #34d399;
+  --gd-ochre: #fbbf24;
+  --gd-graph-ink: #ffffff;
+  --gd-focus: #38bdf8;
+  --gd-dark-shadow: 0 0 0;
+  background: transparent;
   color-scheme: dark;
 }
 
@@ -111,25 +111,8 @@ const dashboardStyles = `
 .gd-sr { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 .gd-background, .gd-app::before {
-  position: fixed;
-  z-index: -2;
-  inset: 0;
-  inline-size: 100%;
-  block-size: 100%;
-  pointer-events: none;
+  display: none;
 }
-.gd-background {
-  object-fit: cover;
-  object-position: center 60%;
-  filter: sepia(.22) saturate(.78) brightness(.86);
-}
-.gd-app::before {
-  content: "";
-  z-index: -1;
-  background: linear-gradient(116deg, rgb(73 48 37 / 35%), transparent 43%, rgb(162 101 63 / 24%) 76%, transparent 100%),
-    linear-gradient(0deg, rgb(53 33 25 / 34%), transparent 58%);
-}
-.gd-app[data-theme="dark"] .gd-background { filter: sepia(.15) saturate(.75) brightness(.61); }
 .gd-surround {
   inline-size: min(calc(100% - 100px), 1380px);
   margin-inline: auto;

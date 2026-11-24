@@ -34,7 +34,7 @@ export default function Navbar({
                   Glass Edition
                 </span>
               </div>
-              <p className="text-[10px] text-slate-300 font-medium hidden sm:block">
+              <p className="text-[10px] text-white/80 font-medium hidden sm:block">
                 First-Principles Exposure Shield {lastUpdated ? `• ${lastUpdated}` : ''}
               </p>
             </div>
@@ -43,9 +43,9 @@ export default function Navbar({
           {/* Toggle Cinematic Hero Button */}
           <button
             onClick={() => setShowHero(!showHero)}
-            className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15 transition-all cursor-pointer"
+            className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full glass-pill text-white transition-all cursor-pointer"
           >
-            <Film className="w-3.5 h-3.5 text-cyan-400" />
+            <Film className="w-3.5 h-3.5 text-cyan-300" />
             <span className="hidden sm:inline">{showHero ? 'Hide Hero' : 'Cinematic Hero'}</span>
             {showHero ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </button>
@@ -70,10 +70,10 @@ export default function Navbar({
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   active
                     ? 'glass-pill-active'
-                    : 'text-slate-300 hover:text-white hover:bg-white/10'
+                    : 'text-white/80 hover:text-white hover:bg-white/15'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${active ? 'text-emerald-400' : 'text-slate-400'}`} />
+                <Icon className={`w-3.5 h-3.5 ${active ? 'text-white font-bold' : 'text-white/70'}`} />
                 <span>{tab.label}</span>
               </button>
             );
@@ -89,7 +89,7 @@ export default function Navbar({
                 const city = POPULAR_CITIES.find(c => c.name === e.target.value);
                 if (city) onSelectCity(city);
               }}
-              className="appearance-none bg-slate-900/80 border border-white/15 hover:border-white/30 text-slate-200 text-xs rounded-full pl-3 pr-7 py-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-400 transition-all cursor-pointer"
+              className="appearance-none glass-input text-white text-xs rounded-full pl-3 pr-7 py-1.5 focus:outline-none transition-all cursor-pointer"
             >
               {POPULAR_CITIES.map((city) => (
                 <option key={city.name} value={city.name} className="bg-slate-900 text-white">
@@ -97,14 +97,14 @@ export default function Navbar({
                 </option>
               ))}
             </select>
-            <MapPin className="w-3 h-3 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <MapPin className="w-3 h-3 text-white/70 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           <button
             onClick={onDetectLocation}
             disabled={isDetecting}
             title="Auto-detect GPS location"
-            className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15 transition-all cursor-pointer disabled:opacity-50"
+            className="p-1.5 rounded-full glass-pill text-white transition-all cursor-pointer disabled:opacity-50"
           >
             <MapPin className={`w-3.5 h-3.5 ${isDetecting ? 'animate-bounce text-emerald-400' : ''}`} />
           </button>
@@ -112,7 +112,7 @@ export default function Navbar({
           <button
             onClick={onRefresh}
             title="Refresh live data"
-            className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15 transition-all cursor-pointer"
+            className="p-1.5 rounded-full glass-pill text-white transition-all cursor-pointer"
           >
             <RefreshCw className="w-3.5 h-3.5" />
           </button>

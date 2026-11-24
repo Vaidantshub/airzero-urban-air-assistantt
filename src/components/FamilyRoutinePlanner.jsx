@@ -63,22 +63,22 @@ export default function FamilyRoutinePlanner({ aqiData }) {
       {/* Intro Header */}
       <div className="p-6 rounded-3xl glass-panel flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-            <Users className="w-4 h-4" /> Family Defense Protocol • Local AQI: {currentAqi}
+          <div className="flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wider">
+            <Users className="w-4 h-4 text-emerald-300" /> Family Defense Protocol • Local AQI: {currentAqi}
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white mt-1">
             Personalized Low-Emission Winter Routines
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
+          <p className="text-xs sm:text-sm text-slate-100 mt-1 max-w-2xl leading-relaxed">
             Winter temperature inversions trap tailpipe and biomass exhaust right at street level. Select your family makeup to customize daily smog protection windows and green daily swaps.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3.5 py-2 rounded-xl">
-          <ShieldCheck className="w-5 h-5 text-emerald-400" />
+        <div className="flex items-center gap-2 glass-subcard px-3.5 py-2 rounded-xl">
+          <ShieldCheck className="w-5 h-5 text-emerald-300" />
           <div className="text-right">
-            <span className="text-[10px] text-slate-400 block font-semibold">Active Defenses</span>
-            <span className="text-sm font-bold text-white">
+            <span className="text-[10px] text-white/80 block font-semibold">Active Defenses</span>
+            <span className="text-sm font-black text-white">
               {Object.values(checklist).filter(Boolean).length} of 5 Active
             </span>
           </div>
@@ -87,7 +87,7 @@ export default function FamilyRoutinePlanner({ aqiData }) {
 
       {/* Household Profile Selection */}
       <div className="p-6 rounded-3xl glass-panel">
-        <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3">
+        <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-3">
           1. Who is in your household? (Select all that apply)
         </h3>
 
@@ -99,22 +99,22 @@ export default function FamilyRoutinePlanner({ aqiData }) {
               <button
                 key={prof.id}
                 onClick={() => toggleProfile(prof.id)}
-                className={`p-3.5 rounded-xl border text-left transition-all flex flex-col justify-between ${
+                className={`p-3.5 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${
                   selected
-                    ? 'bg-emerald-500/10 border-emerald-500/50 text-white shadow-md shadow-emerald-500/10'
-                    : 'bg-slate-950/60 border-slate-800/80 text-slate-400 hover:border-slate-700'
+                    ? 'glass-pill-active text-white'
+                    : 'glass-subcard text-white/80 hover:text-white hover:border-white/40'
                 }`}
               >
                 <div className="flex items-center justify-between w-full">
-                  <div className={`p-2 rounded-lg ${selected ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 text-slate-400'}`}>
+                  <div className={`p-2 rounded-xl ${selected ? 'bg-white text-slate-950 font-bold' : 'glass-pill text-white'}`}>
                     <Icon className="w-4 h-4" />
                   </div>
-                  {selected && <span className="w-2 h-2 rounded-full bg-emerald-400" />}
+                  {selected && <span className="w-2 h-2 rounded-full bg-white shadow-sm" />}
                 </div>
 
                 <div className="mt-3">
-                  <span className="text-xs font-bold block">{prof.label}</span>
-                  <span className="text-[10px] text-amber-400/90 font-medium block mt-0.5">
+                  <span className="text-xs font-bold block text-white">{prof.label}</span>
+                  <span className="text-[10px] text-amber-300 font-medium block mt-0.5">
                     {prof.risk}
                   </span>
                 </div>
@@ -124,16 +124,16 @@ export default function FamilyRoutinePlanner({ aqiData }) {
         </div>
 
         {/* Selected Vulnerabilities Advice */}
-        <div className="mt-4 pt-4 border-t border-slate-800/80 space-y-2">
+        <div className="mt-4 pt-4 border-t border-white/15 space-y-2">
           {selectedProfiles.map(id => {
             const p = PROFILES.find(item => item.id === id);
             if (!p) return null;
             return (
-              <div key={id} className="flex items-start gap-2.5 text-xs text-slate-300 bg-slate-950/40 p-2.5 rounded-lg border border-slate-800/60">
-                <ChevronRight className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div key={id} className="flex items-start gap-2.5 text-xs text-white glass-subcard p-3 rounded-xl">
+                <ChevronRight className="w-4 h-4 text-emerald-300 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-white">{p.label}: </strong>
-                  {p.tip}
+                  <span className="text-slate-100">{p.tip}</span>
                 </div>
               </div>
             );
@@ -149,15 +149,15 @@ export default function FamilyRoutinePlanner({ aqiData }) {
           <div>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                <Car className="w-4 h-4 text-cyan-400" />
+                <Car className="w-4 h-4 text-cyan-300" />
                 2. Morning School & Work Commute Optimization
               </h3>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+              <span className="text-[10px] font-bold uppercase tracking-wider glass-pill px-2.5 py-0.5 rounded text-white">
                 Low-Emission
               </span>
             </div>
 
-            <p className="text-xs text-slate-400 mb-4">
+            <p className="text-xs text-slate-100 mb-4 leading-relaxed">
               Idling in morning school pick-up zones creates toxic micro-environments where PM2.5 can spike &gt;450 µg/m³. Choose your family transit mode:
             </p>
 
@@ -171,32 +171,32 @@ export default function FamilyRoutinePlanner({ aqiData }) {
                 <button
                   key={mode.id}
                   onClick={() => setCommuteMode(mode.id)}
-                  className={`p-3 rounded-xl border text-left transition-all ${
+                  className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
                     commuteMode === mode.id
-                      ? 'bg-cyan-500/10 border-cyan-500/50 text-white'
-                      : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:border-slate-700'
+                      ? 'glass-pill-active text-white'
+                      : 'glass-subcard text-white/80 hover:text-white hover:border-white/40'
                   }`}
                 >
-                  <span className="text-xs font-bold block">{mode.label}</span>
-                  <span className="text-[10px] text-slate-400 mt-0.5 block">{mode.desc}</span>
+                  <span className="text-xs font-bold block text-white">{mode.label}</span>
+                  <span className="text-[10px] text-slate-100 mt-0.5 block">{mode.desc}</span>
                 </button>
               ))}
             </div>
 
-            <div className="mt-4 p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between">
+            <div className="mt-4 p-3.5 rounded-xl glass-subcard flex items-center justify-between">
               <div>
-                <span className="text-[10px] uppercase font-bold text-slate-400 block">Daily Emission Impact</span>
-                <span className="text-xs font-semibold text-emerald-400">{emissionsSaved.badge}</span>
+                <span className="text-[10px] uppercase font-bold text-white/80 block">Daily Emission Impact</span>
+                <span className="text-xs font-semibold text-emerald-300">{emissionsSaved.badge}</span>
               </div>
               <div className="text-right">
                 <span className="text-xs font-black text-white">{emissionsSaved.co2} CO₂</span>
-                <span className="text-[10px] text-slate-400 block">Saved today</span>
+                <span className="text-[10px] text-white/70 block">Saved today</span>
               </div>
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            <strong className="text-slate-200">Pro-Tip for Drivers:</strong> Always press the <strong>Cabin Air Recirculation button</strong> (the car with the curved arrow). It routes cabin air through the pollen/HEPA filter and cuts incoming exhaust particulate by up to 80%.
+          <div className="mt-4 pt-3 border-t border-white/15 text-[11px] text-slate-100">
+            <strong className="text-white">Pro-Tip for Drivers:</strong> Always press the <strong>Cabin Air Recirculation button</strong> (the car with the curved arrow). It routes cabin air through the pollen/HEPA filter and cuts incoming exhaust particulate by up to 80%.
           </div>
         </div>
 
@@ -205,15 +205,15 @@ export default function FamilyRoutinePlanner({ aqiData }) {
           <div>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                <Flame className="w-4 h-4 text-amber-400" />
+                <Flame className="w-4 h-4 text-amber-300" />
                 3. Zero-Smog Winter Heating Protocol
               </h3>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+              <span className="text-[10px] font-bold uppercase tracking-wider glass-pill px-2.5 py-0.5 rounded text-white">
                 Indoor Air Hack
               </span>
             </div>
 
-            <p className="text-xs text-slate-400 mb-4">
+            <p className="text-xs text-slate-100 mb-4 leading-relaxed">
               Heating homes with unseasoned wood, coal, or biomass during winter is the #1 domestic driver of local smog inversions.
             </p>
 
@@ -241,28 +241,28 @@ export default function FamilyRoutinePlanner({ aqiData }) {
                 <div
                   key={item.id}
                   onClick={() => setHeatingMode(item.id)}
-                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                  className={`p-3 rounded-2xl border cursor-pointer transition-all ${
                     heatingMode === item.id
-                      ? 'bg-amber-500/10 border-amber-500/50'
-                      : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                      ? 'glass-pill-active text-white'
+                      : 'glass-subcard text-white/80 hover:text-white hover:border-white/40'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-white">{item.title}</span>
                     <span className={`text-[10px] font-semibold px-2 py-0.5 rounded ${
-                      item.tag.includes('Avoid') ? 'bg-rose-500/20 text-rose-400' : 'bg-emerald-500/20 text-emerald-400'
+                      item.tag.includes('Avoid') ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' : 'glass-pill text-white'
                     }`}>
                       {item.tag}
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-1">{item.benefit}</p>
+                  <p className="text-[11px] text-slate-100 mt-1 leading-relaxed">{item.benefit}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            <strong className="text-slate-200">The 2°C Thermostat Hack:</strong> Lowering winter thermostat by just 2°C and wearing thermal layers cuts household heating emissions by 14% across the winter season.
+          <div className="mt-4 pt-3 border-t border-white/15 text-[11px] text-slate-100">
+            <strong className="text-white">The 2°C Thermostat Hack:</strong> Lowering winter thermostat by just 2°C and wearing thermal layers cuts household heating emissions by 14% across the winter season.
           </div>
         </div>
 
@@ -271,7 +271,7 @@ export default function FamilyRoutinePlanner({ aqiData }) {
       {/* Daily Smog Defense Checklist */}
       <div className="p-6 rounded-3xl glass-panel">
         <h3 className="text-sm font-bold text-white flex items-center gap-2 mb-3">
-          <CheckSquare className="w-4 h-4 text-emerald-400" />
+          <CheckSquare className="w-4 h-4 text-emerald-300" />
           4. Today's Family Smog Checklist (Interactive Daily Tracker)
         </h3>
 
@@ -286,23 +286,23 @@ export default function FamilyRoutinePlanner({ aqiData }) {
             <div
               key={item.key}
               onClick={() => toggleCheck(item.key)}
-              className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-start gap-3 select-none ${
+              className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-start gap-3 select-none ${
                 checklist[item.key]
-                  ? 'bg-emerald-500/10 border-emerald-500/40 text-slate-200'
-                  : 'bg-slate-950/60 border-slate-800/80 text-slate-400 hover:border-slate-700'
+                  ? 'glass-pill-active text-white'
+                  : 'glass-subcard text-white/80 hover:text-white hover:border-white/40'
               }`}
             >
               <input
                 type="checkbox"
                 checked={checklist[item.key]}
                 onChange={() => {}}
-                className="mt-0.5 rounded text-emerald-500 focus:ring-emerald-400 border-slate-700 bg-slate-900 cursor-pointer"
+                className="mt-0.5 rounded text-white focus:ring-white border-white/40 bg-white/10 cursor-pointer"
               />
               <div>
-                <span className={`text-xs font-bold block ${checklist[item.key] ? 'text-white' : 'text-slate-400'}`}>
+                <span className="text-xs font-bold block text-white">
                   {item.label}
                 </span>
-                <span className="text-[10px] text-slate-400 mt-1 block">
+                <span className="text-[10px] text-slate-100 mt-1 block leading-relaxed">
                   {item.desc}
                 </span>
               </div>

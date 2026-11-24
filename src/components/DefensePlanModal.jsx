@@ -53,70 +53,70 @@ Prepared with AuraCare Urban Air Quality Assistant
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
-      <div className="glass-panel rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-fade-in">
+      <div className="glass-panel rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden border border-white/30">
         
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
+        <div className="p-4 sm:p-5 border-b border-white/15 flex items-center justify-between glass-subcard">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-              <ShieldCheck className="w-5 h-5" />
+            <div className="p-2 rounded-xl glass-pill text-white">
+              <ShieldCheck className="w-5 h-5 text-emerald-300" />
             </div>
             <div>
               <h3 className="text-base font-bold text-white">Family Winter Smog Battle Card</h3>
-              <p className="text-xs text-slate-400">{city} • Generated for today's forecast</p>
+              <p className="text-xs text-slate-100">{city} • Generated for today's forecast</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-full glass-pill text-white hover:bg-white/20 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Content Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 text-xs text-slate-300 font-sans">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 text-xs text-white font-sans">
           
-          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+          <div className="p-3.5 rounded-2xl glass-subcard flex items-center justify-between">
             <div>
-              <span className="text-[10px] text-slate-500 uppercase font-semibold">Today's Risk Index</span>
-              <div className="text-base font-bold text-white mt-0.5">
+              <span className="text-[10px] text-white/80 uppercase font-semibold">Today's Risk Index</span>
+              <div className="text-base font-black text-white mt-0.5">
                 {category.label} (AQI {aqi})
               </div>
             </div>
             <div className="text-right">
-              <span className="text-[10px] text-slate-500 uppercase font-semibold">Best Window</span>
-              <div className="text-xs font-bold text-emerald-400 mt-0.5">{bestWindow}</div>
+              <span className="text-[10px] text-white/80 uppercase font-semibold">Best Window</span>
+              <div className="text-xs font-black text-emerald-300 mt-0.5">{bestWindow}</div>
             </div>
           </div>
 
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-              <Wind className="w-3.5 h-3.5 text-cyan-400" />
+              <Wind className="w-3.5 h-3.5 text-cyan-300" />
               1. Ventilation & Transit Protocol
             </h4>
-            <ul className="space-y-1.5 pl-4 list-disc text-slate-300">
+            <ul className="space-y-1.5 pl-4 list-disc text-slate-100 leading-relaxed">
               <li>Open windows for fresh air exchange only between <strong>1:00 PM and 3:30 PM</strong>.</li>
               <li>Keep all windows locked and sealed during early morning commute hours (6:00 - 9:30 AM).</li>
               <li>Ensure children wear fitted N95/KF94 masks during school bus pickup or walking.</li>
             </ul>
 
             <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5 pt-2">
-              <Home className="w-3.5 h-3.5 text-emerald-400" />
+              <Home className="w-3.5 h-3.5 text-emerald-300" />
               2. Clean Air Bedroom Sanctuary
             </h4>
-            <ul className="space-y-1.5 pl-4 list-disc text-slate-300">
+            <ul className="space-y-1.5 pl-4 list-disc text-slate-100 leading-relaxed">
               <li>Run the DIY Corsi-Rosenthal box or HEPA unit continuously on Low speed.</li>
               <li>Place rolled towels or foam tape along bottom of doors leading outside.</li>
               <li>Maintain bedroom humidity at 40-50% to precipitate airborne particulate.</li>
             </ul>
 
             <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5 pt-2">
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+              <AlertTriangle className="w-3.5 h-3.5 text-rose-300" />
               3. Pediatric & Senior Health Flags
             </h4>
-            <ul className="space-y-1.5 pl-4 list-disc text-slate-300">
+            <ul className="space-y-1.5 pl-4 list-disc text-slate-100 leading-relaxed">
               <li>Keep fast-acting inhalers within immediate reach of asthmatic members.</li>
               <li>Cancel outdoor running, sports training, and heavy outdoor labor.</li>
               <li>Rinse eyes with saline if burning sensation or conjunctival irritation occurs.</li>
@@ -126,19 +126,19 @@ Prepared with AuraCare Urban Air Quality Assistant
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between">
-          <span className="text-[11px] text-slate-500">Ready for printing or fridge mounting</span>
+        <div className="p-4 border-t border-white/15 glass-subcard flex items-center justify-between">
+          <span className="text-[11px] text-white/80 font-medium">Ready for printing or fridge mounting</span>
           <div className="flex gap-2">
             <button
               onClick={handleCopy}
-              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+              className="px-3.5 py-1.5 rounded-full glass-pill text-white text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-300" /> : <Copy className="w-3.5 h-3.5" />}
               {copied ? 'Copied' : 'Copy Text'}
             </button>
             <button
               onClick={handlePrint}
-              className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 transition-all shadow-md shadow-emerald-500/20"
+              className="px-4 py-1.5 rounded-full glass-pill text-white text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer hover:scale-[1.02]"
             >
               <Printer className="w-3.5 h-3.5" />
               Print Battle Card
