@@ -39,11 +39,11 @@ Seek immediate medical attention if child or elderly family member shows:
 - Intercostal retractions (ribs sucking inward during breathing)
 - Lethargy, pale skin, or bluish tint around lips
 
-Prepared with AuraCare Urban Air Quality Assistant
+Prepared with AIRZERO Urban Air Quality Assistant
 ================================================`;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(planText);
+    navigator.clipboard?.writeText(planText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -53,7 +53,12 @@ Prepared with AuraCare Urban Air Quality Assistant
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-fade-in">
+    <div 
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="defense-modal-title"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-fade-in"
+    >
       <div className="glass-panel rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden border border-white/30">
         
         {/* Header */}
@@ -63,12 +68,13 @@ Prepared with AuraCare Urban Air Quality Assistant
               <ShieldCheck className="w-5 h-5 text-emerald-300" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">Family Winter Smog Battle Card</h3>
+              <h3 id="defense-modal-title" className="text-base font-bold text-white">Family Winter Smog Battle Card</h3>
               <p className="text-xs text-slate-100">{city} • Generated for today's forecast</p>
             </div>
           </div>
           <button
             onClick={onClose}
+            aria-label="Close Battle Plan Modal"
             className="p-1.5 rounded-full glass-pill text-white hover:bg-white/20 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
@@ -131,6 +137,7 @@ Prepared with AuraCare Urban Air Quality Assistant
           <div className="flex gap-2">
             <button
               onClick={handleCopy}
+              aria-label="Copy battle plan text to clipboard"
               className="px-3.5 py-1.5 rounded-full glass-pill text-white text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-300" /> : <Copy className="w-3.5 h-3.5" />}
@@ -138,6 +145,7 @@ Prepared with AuraCare Urban Air Quality Assistant
             </button>
             <button
               onClick={handlePrint}
+              aria-label="Print battle plan card"
               className="px-4 py-1.5 rounded-full glass-pill text-white text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer hover:scale-[1.02]"
             >
               <Printer className="w-3.5 h-3.5" />
