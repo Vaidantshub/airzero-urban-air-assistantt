@@ -1,18 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import LeftEmergencyDock from './components/LeftEmergencyDock';
 import AirZeroFirstPrinciples from './components/AirZeroFirstPrinciples';
 import AqiOverview from './components/AqiOverview';
-import FamilyRoutinePlanner from './components/FamilyRoutinePlanner';
-import IndoorAirHacks from './components/IndoorAirHacks';
-import PromptWarAssistant from './components/PromptWarAssistant';
-import DefensePlanModal from './components/DefensePlanModal';
-import ElsewhereHero from '@/components/ui/elsewhere-hero';
 import AmbientElsewhereBackground from '@/components/ui/AmbientElsewhereBackground';
 import { POPULAR_CITIES } from './data/cities';
 import { fetchLiveAirQuality, getFallbackData } from './services/airQualityService';
 import { ExternalLink } from 'lucide-react';
 import { gsap } from 'gsap';
+
+// Code-split dynamic secondary modules for optimal bundle efficiency
+const FamilyRoutinePlanner = lazy(() => import('./components/FamilyRoutinePlanner'));
+const IndoorAirHacks = lazy(() => import('./components/IndoorAirHacks'));
+const PromptWarAssistant = lazy(() => import('./components/PromptWarAssistant'));
+const DefensePlanModal = lazy(() => import('./components/DefensePlanModal'));
+const ElsewhereHero = lazy(() => import('@/components/ui/elsewhere-hero'));
+
+/**
+ * Module loading skeleton for Suspense transitions
+ */
+function ModuleLoadingFallback() {
+  return (
+    <div className="p-12 rounded-3xl glass-panel text-center text-white/80 font-mono text-xs animate-pulse">
+      <div className="inline-block w-6 h-6 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin mb-3" />
+      <p>Streaming AIRZERO telemetry & neural models...</p>
+    </div>
+  );
+}
 
 export default function App() {
   const [selectedCity, setSelectedCity] = useState(POPULAR_CITIES[0]); // Default Delhi NCR
@@ -42,8 +56,7 @@ export default function App() {
       try {
         const data = await fetchLiveAirQuality(selectedCity.lat, selectedCity.lon, selectedCity.name);
         if (isMounted) setAqiData(data);
-      } catch (err) {
-        console.error(err);
+      } catch {
         if (isMounted) setAqiData(getFallbackData(selectedCity.name));
       } finally {
         if (isMounted) setLoading(false);
@@ -53,19 +66,19 @@ export default function App() {
     return () => { isMounted = false; };
   }, [selectedCity]);
 
-  const handleRefresh = async () => {
+  const handleRefresh = useCallback(async () => {
     setLoading(true);
     try {
       const data = await fetchLiveAirQuality(selectedCity.lat, selectedCity.lon, selectedCity.name);
       setAqiData(data);
-    } catch (err) {
-      console.error(err);
+    } catch {
+      // Retain current data if refresh encounters error
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCity]);
 
-  const handleDetectLocation = () => {
+  const handleDetectLocation = useCallback(() => {
     if (!navigator.geolocation) {
       alert('Geolocation is not supported by your browser.');
       return;
@@ -84,14 +97,13 @@ export default function App() {
         setSelectedCity(customCity);
         setIsDetecting(false);
       },
-      (err) => {
-        console.warn('Geolocation failed:', err);
+      () => {
         setIsDetecting(false);
         alert('Could not detect location. Defaulting to selected city.');
       },
       { timeout: 8000 }
     );
-  };
+  }, []);
 
   return (
     <div className="min-h-screen text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-black relative overflow-x-hidden">
@@ -126,21 +138,23 @@ export default function App() {
       {showHero && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 relative z-20 animate-in fade-in zoom-in-95 duration-500">
           <div className="glass-panel rounded-3xl overflow-hidden shadow-2xl border border-white/20">
-            <ElsewhereHero
-              headline="Breathe somewhere better."
-              subline="Ambient soundscapes and real-time smog defense routines that protect your family from winter inversion."
-              primaryCta={{ label: "Activate AIRZERO Defense", href: "#airzero" }}
-              brand="AIRZERO x Elsewhere"
-              links={[
-                { label: "Exposure Detective", href: "#" },
-                { label: "Counterfactual AI", href: "#" },
-                { label: "Proof of Improvement", href: "#" },
-              ]}
-              signature={{
-                name: "AIRZERO First Principles",
-                url: "https://hack2skill.com",
-              }}
-            />
+            <Suspense fallback={<ModuleLoadingFallback />}>
+              <ElsewhereHero
+                headline="Breathe somewhere better."
+                subline="Ambient soundscapes and real-time smog defense routines that protect your family from winter inversion."
+                primaryCta={{ label: "Activate AIRZERO Defense", href: "#airzero" }}
+                brand="AIRZERO x Elsewhere"
+                links={[
+                  { label: "Exposure Detective", href: "#" },
+                  { label: "Counterfactual AI", href: "#" },
+                  { label: "Proof of Improvement", href: "#" },
+                ]}
+                signature={{
+                  name: "AIRZERO First Principles",
+                  url: "https://hack2skill.com",
+                }}
+              />
+            </Suspense>
           </div>
         </section>
       )}
@@ -165,30 +179,40 @@ export default function App() {
 
         {/* Tab 2: Family Defense & Low-Emission Routines */}
         {activeTab === 'planner' && (
-          <FamilyRoutinePlanner aqiData={aqiData} />
+          <Suspense fallback={<ModuleLoadingFallback />}>
+            <FamilyRoutinePlanner aqiData={aqiData} />
+          </Suspense>
         )}
 
         {/* Tab 3: Indoor Air Hacks & DIY Purifier Sizing */}
         {activeTab === 'indoor' && (
-          <IndoorAirHacks />
+          <Suspense fallback={<ModuleLoadingFallback />}>
+            <IndoorAirHacks />
+          </Suspense>
         )}
 
         {/* Tab 4: Hackathon Prompt War Studio */}
         {activeTab === 'promptwar' && (
-          <PromptWarAssistant
-            currentAqi={aqiData?.aqi}
-            cityName={selectedCity.name}
-          />
+          <Suspense fallback={<ModuleLoadingFallback />}>
+            <PromptWarAssistant
+              currentAqi={aqiData?.aqi}
+              cityName={selectedCity.name}
+            />
+          </Suspense>
         )}
 
       </main>
 
       {/* Reusable Family Smog Battle Plan Modal */}
-      <DefensePlanModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        data={aqiData}
-      />
+      {isModalOpen && (
+        <Suspense fallback={null}>
+          <DefensePlanModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            data={aqiData}
+          />
+        </Suspense>
+      )}
 
       {/* Hackathon Glassy Footer */}
       <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 mt-8 w-full relative z-10">

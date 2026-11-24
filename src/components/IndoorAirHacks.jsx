@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { 
   Sparkles, 
   DollarSign, 
@@ -11,6 +11,11 @@ import {
   Check
 } from 'lucide-react';
 
+/**
+ * IndoorAirHacks Component
+ * Calculates room volume, Clean Air Delivery Rate (CADR), Air Changes per Hour (ACH),
+ * and provides low-cost DIY filtration blueprints (Corsi-Rosenthal box).
+ */
 export default function IndoorAirHacks() {
   // Room dimensions in feet
   const [roomLength, setRoomLength] = useState(16);
@@ -18,24 +23,26 @@ export default function IndoorAirHacks() {
   const [ceilingHeight, setCeilingHeight] = useState(9);
   const [copiedBom, setCopiedBom] = useState(false);
 
-  // Calculations
-  const roomArea = roomLength * roomWidth; // sq ft
-  const roomVolume = roomArea * ceilingHeight; // cu ft
+  // Memoized geometric and ventilation engineering derivations
+  const roomArea = useMemo(() => roomLength * roomWidth, [roomLength, roomWidth]); // sq ft
+  const roomVolume = useMemo(() => roomArea * ceilingHeight, [roomArea, ceilingHeight]); // cu ft
+  
   // EPA / CDC recommendation: at least 4 to 6 air changes per hour (ACH) for smoke/smog defense
   const targetAch = 5;
-  const requiredCadr = Math.round((roomVolume * targetAch) / 60); // CFM (Cubic Feet per Minute)
+  const requiredCadr = useMemo(() => Math.round((roomVolume * targetAch) / 60), [roomVolume]); // CFM
 
   // DIY Corsi-Rosenthal Box specs:
   // Standard 20" box fan with 4 x MERV-13 filters delivers ~450 - 550 CFM of clean air.
   const crBoxCadr = 480;
-
   const diyCost = 45; // $45 estimated parts cost
   const commercialPurifierCost = 260; // Average comparable 450 CFM commercial purifier
-  const moneySaved = commercialPurifierCost - diyCost;
+  const moneySaved = useMemo(() => commercialPurifierCost - diyCost, [commercialPurifierCost, diyCost]);
 
-  const actualAch = Math.round(((crBoxCadr * 60) / roomVolume) * 10) / 10;
+  const actualAch = useMemo(() => {
+    return roomVolume > 0 ? Math.round(((crBoxCadr * 60) / roomVolume) * 10) / 10 : 0;
+  }, [roomVolume]);
 
-  const copyBom = () => {
+  const copyBom = useCallback(() => {
     const text = `Corsi-Rosenthal Box (DIY Air Purifier) Bill of Materials:
 1. 1x 20-inch standard 3-speed box fan ($20)
 2. 4x MERV-13 furnace filters (20"x20"x2" or 20"x20"x1") ($24)
@@ -46,7 +53,7 @@ Total Cost: ~$48 (Saves >$200 vs commercial HEPA units)`;
     navigator.clipboard.writeText(text);
     setCopiedBom(true);
     setTimeout(() => setCopiedBom(false), 2000);
-  };
+  }, []);
 
   return (
     <div className="space-y-6">

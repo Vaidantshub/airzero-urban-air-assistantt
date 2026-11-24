@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Sparkles, 
   HelpCircle, 
@@ -9,6 +9,11 @@ import {
   Cpu
 } from 'lucide-react';
 
+/**
+ * AirZeroFirstPrinciples Component
+ * First-Principles exposure engineering: room infiltration investigation,
+ * continuous 24h timeline dose model, counterfactual interventions, and empirical validation.
+ */
 export default function AirZeroFirstPrinciples({ aqiData }) {
   // Active Sub-system
   const [activeSystem, setActiveSystem] = useState('investigation'); // 'investigation' | 'timeline' | 'counterfactual' | 'proof'
@@ -38,22 +43,29 @@ export default function AirZeroFirstPrinciples({ aqiData }) {
   const outdoorPm25 = aqiData?.pm25 || 94;
 
   // Base unmitigated daily exposure dose (µg·hr/m³)
-  const baselineDose = Math.round(outdoorPm25 * 0.75 * 24); // ~1692 µg·hr/m³
+  const baselineDose = useMemo(() => Math.round(outdoorPm25 * 0.75 * 24), [outdoorPm25]);
 
   // Calculate reductions based on active interventions
-  let reductionPercent = 0;
-  if (interventions.sealDoor) reductionPercent += 18;
-  if (interventions.runDiyPurifier) reductionPercent += 42;
-  if (interventions.dampMopping) reductionPercent += 12;
-  if (interventions.cabinRecirc) reductionPercent += 10;
-  if (interventions.kitchenPreExhaust) reductionPercent += 8;
-  reductionPercent = Math.min(88, reductionPercent);
+  const reductionPercent = useMemo(() => {
+    let reduction = 0;
+    if (interventions.sealDoor) reduction += 18;
+    if (interventions.runDiyPurifier) reduction += 42;
+    if (interventions.dampMopping) reduction += 12;
+    if (interventions.cabinRecirc) reduction += 10;
+    if (interventions.kitchenPreExhaust) reduction += 8;
+    return Math.min(88, reduction);
+  }, [interventions]);
 
-  const counterfactualDose = Math.round(baselineDose * (1 - reductionPercent / 100));
-  const doseAvoided = baselineDose - counterfactualDose;
+  const counterfactualDose = useMemo(() => {
+    return Math.round(baselineDose * (1 - reductionPercent / 100));
+  }, [baselineDose, reductionPercent]);
 
-  // Timeline activities
-  const timelineActivities = [
+  const doseAvoided = useMemo(() => {
+    return baselineDose - counterfactualDose;
+  }, [baselineDose, counterfactualDose]);
+
+  // Memoized timeline activities
+  const timelineActivities = useMemo(() => [
     { time: '07:00 - 08:00', activity: 'Morning Wakeup & Dressing', location: 'Bedroom', baselinePm25: Math.round(outdoorPm25 * 0.8), type: 'measured', tip: 'Overnight accumulation from leaky windows' },
     { time: '08:00 - 09:00', activity: 'Breakfast & Gas Cooking', location: 'Kitchen', baselinePm25: Math.round(outdoorPm25 * 1.6), type: 'measured', tip: 'Unventilated gas burner + oil searing spike' },
     { time: '09:00 - 09:45', activity: 'School Drop-off / Commute', location: 'Transit (Car/Bus)', baselinePm25: Math.round(outdoorPm25 * 1.8), type: 'estimated', tip: 'Direct street-level vehicle exhaust tailpipes' },
@@ -61,7 +73,7 @@ export default function AirZeroFirstPrinciples({ aqiData }) {
     { time: '15:30 - 18:00', activity: 'Afternoon Home Window Crack', location: 'Living Room', baselinePm25: Math.round(outdoorPm25 * 0.6), type: 'measured', tip: 'Safest solar inversion break slot' },
     { time: '19:00 - 20:30', activity: 'Dinner Preparation', location: 'Kitchen', baselinePm25: Math.round(outdoorPm25 * 1.4), type: 'measured', tip: 'Frying generates ultrafine aerosol particulates' },
     { time: '21:00 - 07:00', activity: 'Overnight Sleep (8 hrs)', location: 'Bedroom', baselinePm25: Math.round(outdoorPm25 * 0.7), type: 'measured', tip: 'Longest continuous breathing exposure period' },
-  ];
+  ], [outdoorPm25]);
 
   return (
     <div className="space-y-6">

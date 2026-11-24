@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { 
   Users, 
   Baby, 
@@ -13,14 +13,26 @@ import {
   ChevronRight
 } from 'lucide-react';
 
-const PROFILES = [
+const PROFILES = Object.freeze([
   { id: 'baby', label: 'Infant / Toddler', icon: Baby, risk: 'Extreme (Immature Lungs)', tip: 'Breathing rate is 2x adults; keep floor-level air clean (particulate settles near ground).' },
   { id: 'elderly', label: 'Senior / Asthmatic', icon: HeartPulse, risk: 'High Cardiovascular Risk', tip: 'Keep emergency bronchodilator on hand; avoid any outdoor exertion when AQI > 150.' },
   { id: 'school', label: 'School Child', icon: GraduationCap, risk: 'High Morning Exposure', tip: 'Coordinate with school for indoor recess during smog peaks; ensure fitted N95/FFP2 for commute.' },
   { id: 'commuter', label: 'Daily Commuter', icon: Briefcase, risk: 'Direct Traffic Exhaust', tip: 'Set car ventilation to Recirculate (Cabin air) before entering tunnel or congested intersections.' },
   { id: 'pets', label: 'Household Pets', icon: Dog, risk: 'Ground-Level Particulate', tip: 'Wipe paws & coat with damp cloth after walks to prevent tracking toxic soot into sleeping areas.' },
-];
+]);
 
+const EMISSIONS_SAVINGS_MAP = Object.freeze({
+  carpool: { co2: '3.4 kg', pm25Avoided: '42 g', badge: '65% emission reduction vs solo car' },
+  metro: { co2: '6.8 kg', pm25Avoided: '90 g', badge: '90% emission reduction + zero road exhaust' },
+  solocar: { co2: '0 kg', pm25Avoided: '0 g', badge: 'High baseline tailpipe emissions' },
+  cycle: { co2: '7.5 kg', pm25Avoided: '100 g', badge: 'Zero emission (Only when AQI < 100 with N95)' },
+});
+
+/**
+ * FamilyRoutinePlanner Component
+ * Personalized vulnerable-group routines, commute mode emission calculations,
+ * and smog lockdown action checklist.
+ */
 export default function FamilyRoutinePlanner({ aqiData }) {
   const [selectedProfiles, setSelectedProfiles] = useState(['school', 'elderly']);
   const [commuteMode, setCommuteMode] = useState('carpool');
@@ -35,27 +47,23 @@ export default function FamilyRoutinePlanner({ aqiData }) {
 
   const currentAqi = aqiData?.aqi || 188;
 
-  const toggleProfile = (id) => {
-    if (selectedProfiles.includes(id)) {
-      if (selectedProfiles.length > 1) {
-        setSelectedProfiles(selectedProfiles.filter(p => p !== id));
+  const toggleProfile = useCallback((id) => {
+    setSelectedProfiles((prev) => {
+      if (prev.includes(id)) {
+        return prev.length > 1 ? prev.filter(p => p !== id) : prev;
       }
-    } else {
-      setSelectedProfiles([...selectedProfiles, id]);
-    }
-  };
+      return [...prev, id];
+    });
+  }, []);
 
-  const toggleCheck = (key) => {
+  const toggleCheck = useCallback((key) => {
     setChecklist(prev => ({ ...prev, [key]: !prev[key] }));
-  };
+  }, []);
 
-  // Low emission savings calculation
-  const emissionsSaved = {
-    carpool: { co2: '3.4 kg', pm25Avoided: '42 g', badge: '65% emission reduction vs solo car' },
-    metro: { co2: '6.8 kg', pm25Avoided: '90 g', badge: '90% emission reduction + zero road exhaust' },
-    solocar: { co2: '0 kg', pm25Avoided: '0 g', badge: 'High baseline tailpipe emissions' },
-    cycle: { co2: '7.5 kg', pm25Avoided: '100 g', badge: 'Zero emission (Only when AQI < 100 with N95)' },
-  }[commuteMode];
+  // Memoized low emission savings calculation
+  const emissionsSaved = useMemo(() => {
+    return EMISSIONS_SAVINGS_MAP[commuteMode] || EMISSIONS_SAVINGS_MAP.carpool;
+  }, [commuteMode]);
 
   return (
     <div className="space-y-6">
