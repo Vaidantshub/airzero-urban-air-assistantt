@@ -85,17 +85,25 @@ export default function LeftEmergencyDock({
       {/* Floating Left Button Dock */}
       <aside 
         aria-label="Emergency and Assistant Quick Action Center"
-        className="fixed left-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2.5 pointer-events-auto"
+        className="fixed left-3 sm:left-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 pointer-events-auto"
       >
         {/* Toggle Chatbot Button */}
         <button
           onClick={() => { setActivePanel('chat'); setIsOpen(true); }}
           title="Open AI Smog Assistant"
-          className="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:scale-110 hover:border-white/60 transition-all shadow-xl cursor-pointer group relative"
+          className="w-14 h-14 rounded-2xl glass-panel border border-cyan-400/50 flex flex-col items-center justify-center text-white hover:scale-105 hover:border-cyan-300 transition-all shadow-2xl cursor-pointer group relative bg-white/15 backdrop-blur-xl"
         >
-          <MessageSquare className="w-5 h-5 text-cyan-300 group-hover:text-white" />
-          <span className="absolute left-14 px-2.5 py-1 rounded-md glass-panel text-[11px] font-bold text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
-            AI Smog Assistant
+          {/* Live Notification Indicator */}
+          <span className="absolute -top-1 -right-1 flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-400 border border-slate-950"></span>
+          </span>
+
+          <MessageSquare className="w-5 h-5 text-cyan-300 stroke-[2.5]" />
+          <span className="text-[9px] font-black uppercase tracking-wider text-white mt-0.5">AI Chat</span>
+
+          <span className="absolute left-16 px-2.5 py-1 rounded-lg glass-panel text-[11px] font-bold text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl border border-white/30">
+            Open AI Smog Assistant
           </span>
         </button>
 
@@ -103,10 +111,18 @@ export default function LeftEmergencyDock({
         <button
           onClick={() => { setActivePanel('emergency'); setIsOpen(true); }}
           title="Emergency Helpline & Triage"
-          className="w-12 h-12 rounded-full glass-panel border-rose-400/40 flex items-center justify-center text-rose-300 hover:text-white hover:border-rose-400 hover:scale-110 transition-all shadow-xl cursor-pointer group relative"
+          className="w-14 h-14 rounded-2xl glass-panel border border-rose-400/50 flex flex-col items-center justify-center text-white hover:scale-105 hover:border-rose-300 transition-all shadow-2xl cursor-pointer group relative bg-white/15 backdrop-blur-xl"
         >
-          <PhoneCall className="w-5 h-5 text-rose-300 animate-pulse" />
-          <span className="absolute left-14 px-2.5 py-1 rounded-md glass-panel text-[11px] font-bold text-rose-200 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
+          {/* Pulsing Emergency Red Beacon */}
+          <span className="absolute -top-1 -right-1 flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-80"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500 border border-slate-950"></span>
+          </span>
+
+          <PhoneCall className="w-5 h-5 text-rose-300 stroke-[2.5] animate-pulse" />
+          <span className="text-[9px] font-black uppercase tracking-wider text-rose-200 mt-0.5">SOS 112</span>
+
+          <span className="absolute left-16 px-2.5 py-1 rounded-lg glass-panel text-[11px] font-bold text-rose-200 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl border border-rose-400/30">
             Emergency Helpline
           </span>
         </button>
@@ -115,10 +131,17 @@ export default function LeftEmergencyDock({
         <button
           onClick={() => { setActivePanel('location'); setIsOpen(true); }}
           title="Verify GPS Location & Threat"
-          className="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:scale-110 hover:border-white/60 transition-all shadow-xl cursor-pointer group relative"
+          className="w-14 h-14 rounded-2xl glass-panel border border-emerald-400/50 flex flex-col items-center justify-center text-white hover:scale-105 hover:border-emerald-300 transition-all shadow-2xl cursor-pointer group relative bg-white/15 backdrop-blur-xl"
         >
-          <MapPin className="w-5 h-5 text-emerald-300 group-hover:text-white" />
-          <span className="absolute left-14 px-2.5 py-1 rounded-md glass-panel text-[11px] font-bold text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
+          {/* Location Active Beacon */}
+          <span className="absolute -top-1 -right-1 flex h-3 w-3">
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400 border border-slate-950"></span>
+          </span>
+
+          <MapPin className="w-5 h-5 text-emerald-300 stroke-[2.5]" />
+          <span className="text-[9px] font-black uppercase tracking-wider text-emerald-200 mt-0.5">GPS Loc</span>
+
+          <span className="absolute left-16 px-2.5 py-1 rounded-lg glass-panel text-[11px] font-bold text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl border border-white/30">
             Verify Location
           </span>
         </button>

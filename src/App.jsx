@@ -8,7 +8,6 @@ import IndoorAirHacks from './components/IndoorAirHacks';
 import PromptWarAssistant from './components/PromptWarAssistant';
 import DefensePlanModal from './components/DefensePlanModal';
 import ElsewhereHero from '@/components/ui/elsewhere-hero';
-import GlassyDashboard from '@/components/ui/glassy-dashboard';
 import AmbientElsewhereBackground from '@/components/ui/AmbientElsewhereBackground';
 import { POPULAR_CITIES } from './data/cities';
 import { fetchLiveAirQuality, getFallbackData } from './services/airQualityService';
@@ -147,7 +146,7 @@ export default function App() {
       )}
 
       {/* Main Glass Animated Content Area */}
-      <main ref={contentRef} className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 relative z-10">
+      <main ref={contentRef} className="flex-1 max-w-7xl w-full mx-auto px-4 pl-18 sm:pl-22 xl:px-8 py-2 relative z-10">
         
         {/* Tab 0: AIRZERO First-Principles Exposure Defense System */}
         {activeTab === 'airzero' && (
@@ -180,17 +179,6 @@ export default function App() {
             currentAqi={aqiData?.aqi}
             cityName={selectedCity.name}
           />
-        )}
-
-        {/* Tab 5: Glassy Spatial Analytics Dashboard */}
-        {activeTab === 'glassy' && (
-          <div className="glass-panel rounded-3xl overflow-hidden shadow-2xl">
-            <GlassyDashboard 
-              workspaceName="AIRZERO" 
-              panelFrost={14} 
-              initialTheme="dark" 
-            />
-          </div>
         )}
 
       </main>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wind, MapPin, RefreshCw, ShieldAlert, Award, Sparkles, LayoutDashboard, Film, ChevronDown, ChevronUp } from 'lucide-react';
+import { Wind, MapPin, RefreshCw, ShieldAlert, Award, Sparkles, Film, ChevronDown, ChevronUp } from 'lucide-react';
 import { POPULAR_CITIES } from '../data/cities';
 
 export default function Navbar({
@@ -59,7 +59,6 @@ export default function Navbar({
             { id: 'planner', label: 'Family Routines', icon: ShieldAlert },
             { id: 'indoor', label: 'DIY Purifier', icon: ShieldAlert },
             { id: 'promptwar', label: 'Prompt War', icon: Award },
-            { id: 'glassy', label: 'Spatial Workspace', icon: LayoutDashboard },
           ].map((tab) => {
             const Icon = tab.icon;
             const active = activeTab === tab.id;
