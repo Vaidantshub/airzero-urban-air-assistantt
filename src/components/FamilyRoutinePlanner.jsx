@@ -61,7 +61,7 @@ export default function FamilyRoutinePlanner({ aqiData }) {
     <div className="space-y-6">
       
       {/* Intro Header */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-900/60 border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="p-6 rounded-3xl glass-panel flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
             <Users className="w-4 h-4" /> Family Defense Protocol • Local AQI: {currentAqi}
@@ -86,7 +86,7 @@ export default function FamilyRoutinePlanner({ aqiData }) {
       </div>
 
       {/* Household Profile Selection */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div className="p-6 rounded-3xl glass-panel">
         <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3">
           1. Who is in your household? (Select all that apply)
         </h3>
@@ -145,7 +145,7 @@ export default function FamilyRoutinePlanner({ aqiData }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* Daily Commute Strategy */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between">
+        <div className="p-6 rounded-3xl glass-panel flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
@@ -201,7 +201,7 @@ export default function FamilyRoutinePlanner({ aqiData }) {
         </div>
 
         {/* Clean Winter Heating & Home Practice */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between">
+        <div className="p-6 rounded-3xl glass-panel flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
@@ -269,7 +269,7 @@ export default function FamilyRoutinePlanner({ aqiData }) {
       </div>
 
       {/* Daily Smog Defense Checklist */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div className="p-6 rounded-3xl glass-panel">
         <h3 className="text-sm font-bold text-white flex items-center gap-2 mb-3">
           <CheckSquare className="w-4 h-4 text-emerald-400" />
           4. Today's Family Smog Checklist (Interactive Daily Tracker)

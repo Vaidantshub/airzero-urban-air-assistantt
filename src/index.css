@@ -1,7 +1,100 @@
 @import "tailwindcss";
+@import "@fontsource-variable/manrope";
+
+:root {
+  --font-manrope: "Manrope Variable", Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Spatial Glass Lighting System */
+  --glass-rim: rgba(255, 255, 255, 0.22);
+  --glass-rim-subtle: rgba(255, 255, 255, 0.12);
+  --glass-surface: rgba(18, 24, 38, 0.48);
+  --glass-surface-hover: rgba(25, 34, 52, 0.65);
+  --glass-surface-active: rgba(30, 42, 65, 0.75);
+  --glass-gloss: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.03) 45%, transparent 100%);
+  --glass-glow-emerald: rgba(16, 185, 129, 0.25);
+  --glass-glow-cyan: rgba(6, 182, 212, 0.25);
+}
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-black;
+    background-color: #07090e;
+    color: #f1f5f9;
+    font-family: var(--font-manrope);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    selection-background-color: #10b981;
+    selection-color: #000;
   }
+}
+
+/* Glass Architecture Classes */
+.glass-panel {
+  position: relative;
+  border: 1px solid var(--glass-rim);
+  background: var(--glass-gloss), var(--glass-surface);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 
+    inset 1px 1px 1px rgba(255, 255, 255, 0.25),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.4),
+    0 12px 40px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    inset 1px 1px 2px rgba(255, 255, 255, 0.35),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.3),
+    0 16px 50px -10px rgba(0, 0, 0, 0.6);
+}
+
+.glass-panel-interactive {
+  cursor: pointer;
+}
+
+.glass-panel-interactive:hover {
+  transform: translateY(-2px);
+  background: var(--glass-gloss), var(--glass-surface-hover);
+}
+
+.glass-pill {
+  border: 1px solid var(--glass-rim-subtle);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.25s ease;
+}
+
+.glass-pill:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.glass-pill-active {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: rgba(16, 185, 129, 0.6);
+  color: #34d399;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Shimmer Highlight Animation */
+@keyframes glass-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  animation: glass-shimmer 4s infinite linear;
+  pointer-events: none;
 }

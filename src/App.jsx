@@ -1,21 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
+import AirZeroFirstPrinciples from './components/AirZeroFirstPrinciples';
 import AqiOverview from './components/AqiOverview';
 import FamilyRoutinePlanner from './components/FamilyRoutinePlanner';
 import IndoorAirHacks from './components/IndoorAirHacks';
 import PromptWarAssistant from './components/PromptWarAssistant';
 import DefensePlanModal from './components/DefensePlanModal';
+import ElsewhereHero from '@/components/ui/elsewhere-hero';
+import GlassyDashboard from '@/components/ui/glassy-dashboard';
+import AmbientElsewhereBackground from '@/components/ui/AmbientElsewhereBackground';
 import { POPULAR_CITIES } from './data/cities';
 import { fetchLiveAirQuality, getFallbackData } from './services/airQualityService';
 import { ExternalLink } from 'lucide-react';
+import { gsap } from 'gsap';
 
 export default function App() {
   const [selectedCity, setSelectedCity] = useState(POPULAR_CITIES[0]); // Default Delhi NCR
   const [aqiData, setAqiData] = useState(() => getFallbackData(POPULAR_CITIES[0].name));
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState('airzero');
   const [isDetecting, setIsDetecting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showHero, setShowHero] = useState(false); // Can be toggled from navbar anytime
+
+  const contentRef = useRef(null);
+
+  // GSAP Glass Entrance Animation on tab change
+  useEffect(() => {
+    if (!contentRef.current) return;
+    gsap.fromTo(
+      contentRef.current,
+      { opacity: 0, filter: 'blur(10px)', y: 15 },
+      { opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.45, ease: 'power3.out' }
+    );
+  }, [activeTab]);
 
   useEffect(() => {
     let isMounted = true;
@@ -76,9 +94,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-black">
+    <div className="min-h-screen text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-black relative overflow-x-hidden">
       
-      {/* Navigation Bar */}
+      {/* Exact ambient living video & audio soundscape layer across the whole app */}
+      <AmbientElsewhereBackground />
+
+      {/* Floating Glass Pill Navigation Dock */}
       <Navbar
         selectedCity={selectedCity}
         onSelectCity={(city) => setSelectedCity(city)}
@@ -89,11 +110,41 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenReport={() => setIsModalOpen(true)}
+        showHero={showHero}
+        setShowHero={setShowHero}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      {/* Expandable Cinematic Hero Banner */}
+      {showHero && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 relative z-20 animate-in fade-in zoom-in-95 duration-500">
+          <div className="glass-panel rounded-3xl overflow-hidden shadow-2xl border border-white/20">
+            <ElsewhereHero
+              headline="Breathe somewhere better."
+              subline="Ambient soundscapes and real-time smog defense routines that protect your family from winter inversion."
+              primaryCta={{ label: "Activate AIRZERO Defense", href: "#airzero" }}
+              brand="AIRZERO x Elsewhere"
+              links={[
+                { label: "Exposure Detective", href: "#" },
+                { label: "Counterfactual AI", href: "#" },
+                { label: "Proof of Improvement", href: "#" },
+              ]}
+              signature={{
+                name: "AIRZERO First Principles",
+                url: "https://hack2skill.com",
+              }}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* Main Glass Animated Content Area */}
+      <main ref={contentRef} className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 relative z-10">
         
+        {/* Tab 0: AIRZERO First-Principles Exposure Defense System */}
+        {activeTab === 'airzero' && (
+          <AirZeroFirstPrinciples aqiData={aqiData} />
+        )}
+
         {/* Tab 1: Dashboard & Live Smog Radar */}
         {activeTab === 'dashboard' && (
           <AqiOverview
@@ -122,6 +173,17 @@ export default function App() {
           />
         )}
 
+        {/* Tab 5: Glassy Spatial Analytics Dashboard */}
+        {activeTab === 'glassy' && (
+          <div className="glass-panel rounded-3xl overflow-hidden shadow-2xl">
+            <GlassyDashboard 
+              workspaceName="AIRZERO" 
+              panelFrost={14} 
+              initialTheme="dark" 
+            />
+          </div>
+        )}
+
       </main>
 
       {/* Reusable Family Smog Battle Plan Modal */}
@@ -131,14 +193,14 @@ export default function App() {
         data={aqiData}
       />
 
-      {/* Hackathon Footer with Links & Submission Prompt */}
-      <footer className="border-t border-slate-900 bg-slate-950/80 py-8 px-4 sm:px-6 lg:px-8 mt-12">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      {/* Hackathon Glassy Footer */}
+      <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 mt-8 w-full relative z-10">
+        <div className="glass-panel rounded-full px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-300">
           
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-400">AuraCare</span>
+            <span className="font-extrabold text-white">AIRZERO</span>
             <span>•</span>
-            <span>Built for the <strong>Urban Air Quality Assistant</strong> Challenge</span>
+            <span>First-Principles Exposure Engineering • Spatial Glass Architecture</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
@@ -151,14 +213,6 @@ export default function App() {
               Open-Meteo API <ExternalLink className="w-3 h-3" />
             </a>
             <a 
-              href="https://github.com/topics/free-for-developers" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="hover:text-emerald-400 transition-colors flex items-center gap-1"
-            >
-              free-for-developers <ExternalLink className="w-3 h-3" />
-            </a>
-            <a 
               href="https://reactbits.dev" 
               target="_blank" 
               rel="noreferrer" 
@@ -166,10 +220,18 @@ export default function App() {
             >
               reactbits.dev <ExternalLink className="w-3 h-3" />
             </a>
+            <a 
+              href="https://github.com/topics/free-for-developers" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="hover:text-emerald-400 transition-colors flex items-center gap-1"
+            >
+              free-for-developers <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
 
           <div className="text-center md:text-right">
-            <span className="text-slate-400">Hack2Skill Prompt War Leaderboard Edition</span>
+            <span className="text-slate-300 font-semibold">Hack2Skill Prompt War Leaderboard</span>
           </div>
 
         </div>

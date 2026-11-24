@@ -52,7 +52,7 @@ Total Cost: ~$48 (Saves >$200 vs commercial HEPA units)`;
     <div className="space-y-6">
       
       {/* Intro Banner */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-cyan-950/40 via-slate-900 to-slate-900/80 border border-cyan-500/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="p-6 rounded-3xl glass-panel flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-4 h-4" /> Engineering Hack Lab
@@ -75,7 +75,7 @@ Total Cost: ~$48 (Saves >$200 vs commercial HEPA units)`;
       </div>
 
       {/* Interactive DIY Purifier Calculator */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div className="p-6 rounded-3xl glass-panel">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-6">
           <div>
             <h3 className="text-base font-bold text-white flex items-center gap-2">
@@ -197,7 +197,7 @@ Total Cost: ~$48 (Saves >$200 vs commercial HEPA units)`;
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         
         {/* Hack 1: Kitchen Exhaust Protocol */}
-        <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between">
+        <div className="p-5 rounded-3xl glass-panel flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 text-rose-400 text-xs font-bold uppercase tracking-wider mb-2">
               <Flame className="w-4 h-4" /> Hack #1: Kitchen Cooking Exhaust
@@ -213,7 +213,7 @@ Total Cost: ~$48 (Saves >$200 vs commercial HEPA units)`;
         </div>
 
         {/* Hack 2: Wet Cleaning vs Dry Sweeping */}
-        <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between">
+        <div className="p-5 rounded-3xl glass-panel flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2">
               <Droplets className="w-4 h-4" /> Hack #2: Floor Dust Resuspension
@@ -229,7 +229,7 @@ Total Cost: ~$48 (Saves >$200 vs commercial HEPA units)`;
         </div>
 
         {/* Hack 3: Winter Humidity Sweet Spot */}
-        <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between">
+        <div className="p-5 rounded-3xl glass-panel flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
               <Droplets className="w-4 h-4" /> Hack #3: Particulate Settling Physics
@@ -245,7 +245,7 @@ Total Cost: ~$48 (Saves >$200 vs commercial HEPA units)`;
         </div>
 
         {/* Hack 4: NASA Clean Air Plants */}
-        <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between">
+        <div className="p-5 rounded-3xl glass-panel flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
               <TreePine className="w-4 h-4" /> Hack #4: Nighttime Bedroom Oxygenation

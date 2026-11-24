@@ -72,7 +72,7 @@ export default function AqiOverview({ data, loading, onJumpToPlanner, onJumpToIn
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         
         {/* Card 1: Core AQI Dial */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-all flex flex-col justify-between relative overflow-hidden">
+        <div className="p-6 rounded-2xl glass-panel flex flex-col justify-between relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
           <div>
             <div className="flex items-center justify-between text-xs text-slate-400">
@@ -99,7 +99,7 @@ export default function AqiOverview({ data, loading, onJumpToPlanner, onJumpToIn
         </div>
 
         {/* Card 2: Particulates Breakdown */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-all flex flex-col justify-between">
+        <div className="p-6 rounded-2xl glass-panel flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between text-xs text-slate-400">
               <span className="font-semibold uppercase tracking-wider">Microscopic Particulates</span>
@@ -127,7 +127,7 @@ export default function AqiOverview({ data, loading, onJumpToPlanner, onJumpToIn
         </div>
 
         {/* Card 3: Winter Smog Window Advisor */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-all flex flex-col justify-between">
+        <div className="p-6 rounded-2xl glass-panel flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between text-xs text-slate-400">
               <span className="font-semibold uppercase tracking-wider">Daily Smog Windows</span>
@@ -186,7 +186,7 @@ export default function AqiOverview({ data, loading, onJumpToPlanner, onJumpToIn
       </div>
 
       {/* 24-Hour Smog Projection Timeline */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div className="p-6 rounded-2xl glass-panel">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
           <div>
             <h3 className="text-base font-bold text-white flex items-center gap-2">

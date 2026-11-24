@@ -176,7 +176,7 @@ Format as clean, executive markdown with clear actionable headings and zero gene
     <div className="space-y-6">
       
       {/* Hackathon Prompt War Header */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-purple-950/40 via-slate-900 to-slate-900/80 border border-purple-500/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="p-6 rounded-3xl glass-panel flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider">
             <Award className="w-4 h-4" /> Hack2Skill Prompt War Mission
@@ -199,7 +199,7 @@ Format as clean, executive markdown with clear actionable headings and zero gene
       </div>
 
       {/* Preset Master Prompt Blueprints */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div className="p-6 rounded-3xl glass-panel">
         <h3 className="text-base font-bold text-white flex items-center gap-2 mb-2">
           <BookOpen className="w-4 h-4 text-purple-400" />
           Curated Battle-Tested Prompt Blueprints
@@ -262,7 +262,7 @@ Format as clean, executive markdown with clear actionable headings and zero gene
       </div>
 
       {/* Dynamic Custom Prompt Generator */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div className="p-6 rounded-3xl glass-panel">
         <h3 className="text-base font-bold text-white flex items-center gap-2 mb-2">
           <Sparkles className="w-4 h-4 text-emerald-400" />
           Dynamic Family Prompt Compiler
@@ -353,7 +353,7 @@ Format as clean, executive markdown with clear actionable headings and zero gene
       </div>
 
       {/* Interactive AI Smog Knowledge Assistant */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div className="p-6 rounded-3xl glass-panel">
         <h3 className="text-base font-bold text-white flex items-center gap-2 mb-1">
           <HelpCircle className="w-4 h-4 text-cyan-400" />
           Interactive Smog Defense AI Simulator
