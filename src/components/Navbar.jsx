@@ -83,6 +83,7 @@ export default function Navbar({
         <div className="flex items-center gap-2 w-full md:w-auto justify-end">
           <div className="relative">
             <select
+              aria-label="Select target metropolitan city"
               value={selectedCity.name}
               onChange={(e) => {
                 const city = POPULAR_CITIES.find(c => c.name === e.target.value);
@@ -102,6 +103,7 @@ export default function Navbar({
           <button
             onClick={onDetectLocation}
             disabled={isDetecting}
+            aria-label="Auto-detect current GPS location"
             title="Auto-detect GPS location"
             className="p-1.5 rounded-full glass-pill text-white transition-all cursor-pointer disabled:opacity-50"
           >
@@ -110,6 +112,7 @@ export default function Navbar({
 
           <button
             onClick={onRefresh}
+            aria-label="Refresh live air quality telemetry"
             title="Refresh live data"
             className="p-1.5 rounded-full glass-pill text-white transition-all cursor-pointer"
           >
@@ -118,6 +121,7 @@ export default function Navbar({
 
           <button
             onClick={onOpenReport}
+            aria-label="Generate Family Smog Battle Plan Report"
             className="hidden lg:flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] cursor-pointer"
           >
             <ShieldAlert className="w-3.5 h-3.5" />

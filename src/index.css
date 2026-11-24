@@ -1,8 +1,7 @@
 @import "tailwindcss";
-@import "@fontsource-variable/manrope";
 
 :root {
-  --font-manrope: "Manrope Variable", Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-manrope: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', Helvetica, Arial, sans-serif;
 }
 
 @layer base {

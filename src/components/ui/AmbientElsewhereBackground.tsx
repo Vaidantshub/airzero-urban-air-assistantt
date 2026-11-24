@@ -285,7 +285,7 @@ export default function AmbientElsewhereBackground() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           aria-hidden="true"
           style={{ ...videoStyle, opacity: isNight ? 0 : 0.85 }}
         />
@@ -298,7 +298,7 @@ export default function AmbientElsewhereBackground() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           aria-hidden="true"
           style={{ ...videoStyle, opacity: isNight ? 0.9 : 0 }}
         />

@@ -45,8 +45,8 @@ const DEFAULT_NIGHT =
   "https://cdn.21st.dev/assets/mirror/4b/4badf32b0bc920a2fd1b066182eee89e98d8615f680e01fb19ff62fb56e86872.mp4"
 
 const DEFAULT_SIGNATURE = {
-  name: "guglielmogiannattasio.exe",
-  url: "https://www.guglielmogiannattasio.it",
+  name: "AIRZERO Exposure Shield",
+  url: "https://hack2skill.com",
 }
 
 const DEFAULT_LINKS: ElsewhereLink[] = [
@@ -394,7 +394,7 @@ export default function ElsewhereHero({
         loop
         muted
         playsInline
-        preload="auto"
+        preload="none"
         aria-hidden="true"
         style={{ ...videoStyle, objectPosition, opacity: isNight ? 0 : 1 }}
       />
@@ -407,7 +407,7 @@ export default function ElsewhereHero({
         loop
         muted
         playsInline
-        preload="auto"
+        preload="none"
         aria-hidden="true"
         style={{ ...videoStyle, objectPosition, opacity: isNight ? 1 : 0 }}
       />
