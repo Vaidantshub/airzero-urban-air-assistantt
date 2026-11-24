@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
+import LeftEmergencyDock from './components/LeftEmergencyDock';
 import AirZeroFirstPrinciples from './components/AirZeroFirstPrinciples';
 import AqiOverview from './components/AqiOverview';
 import FamilyRoutinePlanner from './components/FamilyRoutinePlanner';
@@ -98,6 +99,14 @@ export default function App() {
       
       {/* Exact ambient living video & audio soundscape layer across the whole app */}
       <AmbientElsewhereBackground />
+
+      {/* Floating Left Live Chatbot, Emergency Call & Location Verification Dock */}
+      <LeftEmergencyDock
+        selectedCity={selectedCity}
+        onDetectLocation={handleDetectLocation}
+        isDetecting={isDetecting}
+        aqiData={aqiData}
+      />
 
       {/* Floating Glass Pill Navigation Dock */}
       <Navbar
@@ -210,24 +219,18 @@ export default function App() {
               rel="noreferrer" 
               className="hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold"
             >
-              Open-Meteo API <ExternalLink className="w-3 h-3" />
+              Open-Meteo Live API <ExternalLink className="w-3 h-3" />
             </a>
             <a 
-              href="https://reactbits.dev" 
+              href="https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health" 
               target="_blank" 
               rel="noreferrer" 
               className="hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold"
             >
-              reactbits.dev <ExternalLink className="w-3 h-3" />
+              WHO Guidelines <ExternalLink className="w-3 h-3" />
             </a>
-            <a 
-              href="https://github.com/topics/free-for-developers" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="hover:text-emerald-300 transition-colors flex items-center gap-1 font-semibold"
-            >
-              free-for-developers <ExternalLink className="w-3 h-3" />
-            </a>
+            <span className="text-white/40">•</span>
+            <span className="text-white/80">Web Audio API Synthesis</span>
           </div>
 
           <div className="text-center md:text-right">
