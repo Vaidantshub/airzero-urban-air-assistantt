@@ -82,10 +82,10 @@ export default function LeftEmergencyDock({
 
   return (
     <>
-      {/* Floating Left Button Dock */}
+      {/* Floating Action Dock: Bottom-Right on mobile/tablet, Left Dock on Desktop */}
       <aside 
         aria-label="Emergency and Assistant Quick Action Center"
-        className="fixed left-3 sm:left-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 pointer-events-auto"
+        className="fixed z-40 pointer-events-auto transition-all duration-300 bottom-5 right-4 flex flex-row gap-2.5 lg:bottom-auto lg:right-auto lg:left-4 lg:top-1/2 lg:-translate-y-1/2 lg:flex-col lg:gap-3"
       >
         {/* Toggle Chatbot Button */}
         <button

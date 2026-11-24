@@ -146,7 +146,7 @@ export default function App() {
       )}
 
       {/* Main Glass Animated Content Area */}
-      <main ref={contentRef} className="flex-1 max-w-7xl w-full mx-auto px-4 pl-18 sm:pl-22 xl:px-8 py-2 relative z-10">
+      <main ref={contentRef} className="flex-1 max-w-7xl w-full mx-auto px-4 lg:pl-24 xl:pl-28 py-2 relative z-10 pb-24 lg:pb-8">
         
         {/* Tab 0: AIRZERO First-Principles Exposure Defense System */}
         {activeTab === 'airzero' && (
